@@ -9,4 +9,5 @@ coder templates pull grafana-template --version active -y
 
 cd grafana-template/
 
-git diff
+# I guess we use VSCode anywany so we dont really need to run git diff
+#git diff

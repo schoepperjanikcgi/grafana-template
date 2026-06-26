@@ -33,7 +33,7 @@ data "coder_workspace" "me" {}
 data "coder_workspace_owner" "me" {}
 
 # See https://registry.coder.com/modules/coder/code-server
-module "code-server-git4" {
+module "code-server-git5" {
   count  = data.coder_workspace.me.start_count
   source = "registry.coder.com/coder/code-server/coder"
 
