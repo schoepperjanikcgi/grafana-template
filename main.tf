@@ -4,7 +4,10 @@ terraform {
             source  = "coder/coder"    
         }
         docker = {
-        source = "kreuzwerker/docker"
+            source = "kreuzwerker/docker"
+        }
+        random = {
+            source = "hashicorp/random"
         }
     }
 }
@@ -30,7 +33,7 @@ data "coder_workspace" "me" {}
 data "coder_workspace_owner" "me" {}
 
 # See https://registry.coder.com/modules/coder/code-server
-module "code-server" {
+module "code-server-git4" {
   count  = data.coder_workspace.me.start_count
   source = "registry.coder.com/coder/code-server/coder"
 
@@ -91,10 +94,16 @@ resource "coder_agent" "main" {
 
 }
 
+resource "random_string" "random" {
+  length           = 16
+  special          = true
+  override_special = "/@£$"
+}
+
 
 resource "docker_container" "python" {
   count = data.coder_workspace.me.start_count
-  name  = "foo"
+  name  = random_string.random.result
   image = "codercom/ubuntu-dev-python3.7"
 
   entrypoint = ["sh", "-c", "sudo update-ca-certificates && ${replace(coder_agent.main.init_script, "/localhost|127\\.0\\.0\\.1/", "host.docker.internal")}"]
