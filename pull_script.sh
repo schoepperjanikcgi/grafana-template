@@ -5,7 +5,7 @@ git pull --rebase
 
 cd ..
 
-coder templates pull grafana-template --version active
+coder templates pull grafana-template --version active -y
 
 cd grafana-template/
 
