@@ -9,6 +9,16 @@ terraform {
         random = {
             source = "hashicorp/random"
         }
+        grafana = {
+            source = "grafana/grafana"
+        }
+        prometheus = {
+            source = "prometheus/prometheus"
+        }
+        node-exporter = {
+            source = "prometheus/node-exporter"
+        }
+}
     }
 }
 

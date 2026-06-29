@@ -2,6 +2,8 @@
 #bin/bash
 git commit -m "..."
 
+git pull
+
 git push
 
-coder templates push --activate true -y
+coder templates push -y
